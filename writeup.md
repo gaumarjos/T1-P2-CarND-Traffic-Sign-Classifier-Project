@@ -106,7 +106,7 @@ My final model results were:
 * validation set accuracy of 0.964
 * test set accuracy of 0.952
 
-The following plot shows the accuracy of the model on the training and validation sets over the epochs"
+The following plot shows the accuracy of the model on the training and validation sets over the epochs.
 ![accuracy](./writeup_images/accuracy.png)
 
 To build the model, an iterative approach was chosen:
