@@ -56,11 +56,13 @@ Here are three examples taken from the dataset:
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 The first step was augmenting the X_train dataset so to even out differences in the number of samples between different labels and to have a larger dataset.
-As follows you can find two bar charts showing how the data available in the dataset are distributed among the labels, left is the original dataset while right is the augmented dataset.
+
+Here are two bar charts showing how the data available in the dataset are distributed among the labels, the first is the original dataset while second is the augmented dataset.
+
 ![sample_distribution_before](./writeup_images/sample_distribution_before.png)
 ![sample_distribution_after](./writeup_images/sample_distribution_after.png)
 
-To augment the dataset, the following approach (applied to every label with less than 2000 samples) was followed:
+To augment the dataset, the following approach (applied to every label with less than a specific number of samples, in this case 2000) was followed:
 * Each image in the original dataset was rotated of -15 and +15°
 * Each image in the original dataset was translated of 4 pixels in four directions
 * The brightness of each image in the original dataset was increased of 50
@@ -72,7 +74,7 @@ The second and last step consisted in normalising the dataset, scaling all image
 * Uniform the magnitude of the coefficients
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
 
@@ -98,26 +100,26 @@ My final model consisted of the following layers:
 | Softmax				        | 	        									                  |
 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-Optimiser: tf.train.AdamOptimizer, with an initial learning rate of 0.001.
-Batch size: 128 (I also tried 64 and 256 but didn't notice any significant improvement so I kept 128)
-Number of epochs: 10 (appeared to be enough, with a good initialisation of weights)
-Weights: were initialised with mu=0 and sigma=1/sqrt(n_outputs) as suggested in literature, this provided a significant boost in the accuracy, achieving high levels (0.85-0.90) already in the first iterations.
-Biases: were initialised to 0
+* Optimiser: tf.train.AdamOptimizer was used, as suggested in the lesson about LeNet. The initial learning rate was 0.001.
+* Batch size: 128 (I also tried 64 and 256 but didn't notice any significant improvement so I kept 128).
+* Number of epochs: with a good initialisation of weights, 10 appeared to be enough. A higher number would have resulted in oscillations on the accuracy plot and most likely overfitting.
+* Weights: were initialised with mu=0 and sigma=1/sqrt(n_outputs) as suggested in [literature](http://neuralnetworksanddeeplearning.com/chap3.html). Changing this from the original sigma=1/sqrt(0.1) led to a considerable improvement in learning as the accuracy curve reached high values (0.85-0.90) already in the first iterations.
+Biases: were initialised to 0.
 
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
 * training set accuracy of 0.997
 * validation set accuracy of 0.964
 * test set accuracy of 0.952
 
-This is the accuracy trend over the epochs:
-[image8]: ./writeup_images/accuracy.png "Accuracy on training and validation sets over the epochs"
+The following plot shows the accuracy of the model on the training and validation sets over the epochs"
+![accuracy](./writeup_images/accuracy.png)
 
-If an iterative approach was chosen:
+To build the model, an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
   LeNet, chosen as a starting point as it was the one covered in the course so far and light enough for my laptop.
 * What were some problems with the initial architecture?
