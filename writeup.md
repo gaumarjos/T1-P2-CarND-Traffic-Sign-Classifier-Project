@@ -21,9 +21,9 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-The writeup file is the one you are reading.
-The Jupyter project notebook is [here](https://github.com/stesalati/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb).
-A HTML export of the notebook is [here](https://github.com/stesalati/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.html).
+* The writeup file is the one you are reading.
+* The Jupyter project notebook is [here](https://github.com/stesalati/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb).
+* A HTML export of the notebook is [here](https://github.com/stesalati/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.html).
 
 ### Data Set Summary & Exploration
 
@@ -38,6 +38,7 @@ I used numpy to calculate summary statistics of the traffic signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 Here are three examples taken from the dataset:
+
 ![input_samples](./writeup_images/input_samples.png)
 
 ### Design and Test a Model Architecture
@@ -52,8 +53,8 @@ Here are two bar charts showing how the data available in the dataset are distri
 ![sample_distribution_after](./writeup_images/sample_distribution_after.png)
 
 To augment the dataset, the following approach (applied to every label with less than a specific number of samples, in this case 2000) was followed:
-* Each image in the original dataset was rotated of -15 and +15°
-* Each image in the original dataset was translated of 4 pixels in four directions
+* Each image in the original dataset was rotated of -15 and +15°, the image size was kept the same 32x32
+* Each image in the original dataset was translated of 4 pixels in four directions, the image size was kept the same 32x32
 * The brightness of each image in the original dataset was increased of 50
 * The so-created images were put together in a pool and shuffled
 * A portion of that pool (the amount necessary to reach 2000, when possible) was appended to the original dataset
