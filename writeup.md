@@ -13,17 +13,6 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
@@ -137,6 +126,7 @@ One approach that was considered but eventually discarded was converting the ima
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 I took 8 pictures of German traffic signs (I'm in Germany). All pictures were taken from random angles (from the car or walking) and with rainy weather:
+
 ![my_samples](./writeup_images/my_samples.png)
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
@@ -145,7 +135,7 @@ Here are the results of the prediction:
 
 | Image			      								                  | Prediction	        						              | 
 |:-------------------------------------------------:|:---------------------------------------------:| 
-| 10 - No passing for vehicles over 3.5 metric tons	| No passing for vehicles over 3.5 metric tons	| 
+| 16 - No passing for vehicles over 3.5 metric tons	| No passing for vehicles over 3.5 metric tons	| 
 | 14 - Stop U-turn     								              | Stop U-turn     								              |
 | 35 - Ahead only									                  | Ahead only									                  |
 | 34 - Turn left ahead								              | Turn left ahead								                |
@@ -161,7 +151,8 @@ This compares favorably to the accuracy on the test set of 0.952
 
 The code for making predictions on my final model is located in the 16th cell of the Ipython notebook.
 
-The model prediction is very accurate for each image, with all softmax probabilities for the "winning" choice above 0.999.
+The model prediction is very accurate for each image, with all softmax probabilities for the "winning" choice above 0.999. Consequently, the probabilities all other signs are extremely low, in ther order of 1e-6 or lower.
+
 A bar chart example is shown below, but, being the probability so high, it doesn't represent much.
 
 ![my_sample_accuracy_bars](./writeup_images/my_sample_accuracy_bars.png)
