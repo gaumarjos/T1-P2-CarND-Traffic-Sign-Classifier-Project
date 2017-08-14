@@ -120,74 +120,52 @@ The following plot shows the accuracy of the model on the training and validatio
 ![accuracy](./writeup_images/accuracy.png)
 
 To build the model, an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-  LeNet, chosen as a starting point as it was the one covered in the course so far and light enough for my laptop.
-* What were some problems with the initial architecture?
-  Even generating more training data and trying different combinations of parameters, I was not able to improve the accuracy on the validation set above 0.90.
-* How was the architecture adjusted and why was it adjusted? 
-  The architecture was initially modified adding dropout layers after each convolutional and fully connected layers. A number of combinations of 0.5 and 1.0 keep probabilities where then tried. In the end, the solution described above was chosen.
-  The biggest step was observed after doubling the depth of the convolutional layers and the size of the fully connected layers.
-* Which parameters were tuned? How were they adjusted and why?
-  I tried with different sizes for both the convolutional and fully connected layers. When I achieved a good result (an accuracy on the validation set of around 0.96).
-* What are some of the important design choices and why were they chosen?
-  I considered a few dropout layers (and in the end choose to have 1) to avoid overfitting and to build a "stronger" model.
-  I tried converting the images in the YUV color space (of which one channel is black and white) but I couldn't see any major improvement.
+Initially the LeNet was chosen as it was covered in the past lesson, it's easy to understand and modify (definitely easier than more modern architectures as GoogLeNet!) and was light enough for my laptop.
+
+This architecture showed immediately some limitations, even preprocessing the training data differently (e.g. greyscale), generating more training data and trying different combinations of hyperparameters, I was not able to improve the accuracy on the validation set above 0.90.
+To improve the architecture, I started considering a number of approaches, both from the past lessons and [here](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf).
+
+After trying with different combinations of hyperparameters, I decided to cautiously expand the depth of the convolutional layers and consequently the size of the subsequent fully connected layers. I tried a number of combinations and I finally obatined a good result (an accuracy on the validation set of around 0.96) with a x2 scaling factor.
+
+Then, to avoid the risk of overfitting and to build a "stronger" model, I added dropout layers after each convolutional and fully connected layers. I tried a number of combinations of 0.5 and 1.0 keep probabilities where then tried. In the end, 
+
+One approach that was considered but eventually discarded was converting the images in the YUV color space (of which one channel is black and white) but I couldn't see any major improvement.
 
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-I took 8 pictures of German traffic signs (I'm in Germany). All pictures were taken from random angles (from the car or walking) and with rainy weather.
+I took 8 pictures of German traffic signs (I'm in Germany). All pictures were taken from random angles (from the car or walking) and with rainy weather:
+![my_samples](./writeup_images/my_samples.png)
 
-Sample distribution before data augmentation
-[mysign0]: ./traffic-signs-data/mydata/0.png "Sign 0"
-[mysign1]: ./traffic-signs-data/mydata/1.png "Sign 1"
-[mysign2]: ./traffic-signs-data/mydata/2.png "Sign 2"
-[mysign3]: ./traffic-signs-data/mydata/3.png "Sign 3"
-[mysign4]: ./traffic-signs-data/mydata/4.png "Sign 4"
-[mysign5]: ./traffic-signs-data/mydata/5.png "Sign 5"
-[mysign6]: ./traffic-signs-data/mydata/6.png "Sign 6"
-[mysign7]: ./traffic-signs-data/mydata/7.png "Sign 7"
-
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
 
-| Image			      								| Prediction	        						| 
+| Image			      								                  | Prediction	        						              | 
 |:-------------------------------------------------:|:---------------------------------------------:| 
 | 10 - No passing for vehicles over 3.5 metric tons	| No passing for vehicles over 3.5 metric tons	| 
-| 14 - Stop U-turn     								| Stop U-turn     								|
-| 35 - Ahead only									| Ahead only									|
-| 34 - Turn left ahead								| Turn left ahead								|
-| 17 - No entry 									| No entry 										|
-| 13 - Yield										| Yield											|
-| 33 - Turn right ahead								| Turn right ahead								|
-| 25 - Road work									| Road work										|
+| 14 - Stop U-turn     								              | Stop U-turn     								              |
+| 35 - Ahead only									                  | Ahead only									                  |
+| 34 - Turn left ahead								              | Turn left ahead								                |
+| 17 - No entry 									                  | No entry 										                  |
+| 13 - Yield										                    | Yield											                    |
+| 33 - Turn right ahead								              | Turn right ahead								              |
+| 25 - Road work									                  | Road work										                  |
 
 The model was able to correctly guess 8 of the 8 traffic signs, which gives an accuracy of 100%.
 This compares favorably to the accuracy on the test set of 0.952
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 16th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-The model prediction is very accurate for each image, with softmax probabilities for the "winning" choice above 0.999.
+The model prediction is very accurate for each image, with all softmax probabilities for the "winning" choice above 0.999.
 A bar chart example is shown below, but, being the probability so high, it doesn't represent much.
+
+![my_sample_accuracy_bars](./writeup_images/my_sample_accuracy_bars.png)
 
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
+#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
