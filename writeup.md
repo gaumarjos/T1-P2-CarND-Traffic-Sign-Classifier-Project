@@ -49,17 +49,16 @@ I used numpy to calculate summary statistics of the traffic signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 Here are three examples taken from the dataset:
-![alt input_samples](./writeup_images/input_samples.png=50x)
+![input_samples](./writeup_images/input_samples.png)
 
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 The first step was augmenting the X_train dataset so to even out differences in the number of samples between different labels and to have a larger dataset.
-Here is a bar chart showing how the data are distributed among the labels, left is the original dataset while right is the augmented dataset.
-
-[sample_distribution_before]: ./writeup_images/sample_distribution_before.png "Sample distribution before data augmentation"
-[sample_distribution_after]: ./writeup_images/sample_distribution_after.png "Sample distribution after data augmentation"
+As follows you can find two bar charts showing how the data available in the dataset are distributed among the labels, left is the original dataset while right is the augmented dataset.
+![sample_distribution_before](./writeup_images/sample_distribution_before.png)
+![sample_distribution_after](./writeup_images/sample_distribution_after.png)
 
 To augment the dataset, the following approach (applied to every label with less than 2000 samples) was followed:
 * Each image in the original dataset was rotated of -15 and +15°
