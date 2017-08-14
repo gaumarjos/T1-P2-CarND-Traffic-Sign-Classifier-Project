@@ -47,7 +47,7 @@ Here are three examples taken from the dataset:
 
 The first step was augmenting the X_train dataset so to even out differences in the number of samples between different labels and to have a larger dataset.
 
-Here are two bar charts showing how the data available in the dataset are distributed among the labels, the first is the original dataset while second is the augmented dataset.
+Here are two bar charts showing how the data available in the dataset are distributed among the labels, the first is the original dataset while the second is the augmented dataset.
 
 ![sample_distribution_before](./writeup_images/sample_distribution_before.png)
 ![sample_distribution_after](./writeup_images/sample_distribution_after.png)
@@ -61,7 +61,7 @@ To augment the dataset, the following approach (applied to every label with less
 
 The second and last step consisted in normalising the dataset, scaling all images in the range [-1, +1], with two effects:
 * Improve the contrast by "stretching" the image over the whole available range
-* Uniform the magnitude of the coefficients
+* Even out the magnitude of the parameters, so to avoid products and sums of big and small numbers
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
