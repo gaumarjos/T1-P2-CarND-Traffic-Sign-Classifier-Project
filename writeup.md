@@ -49,8 +49,7 @@ I used numpy to calculate summary statistics of the traffic signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 Here are three examples taken from the dataset:
-![alt input_samples](./writeup_images/input_samples.png)
-[input_samples]:  "A few samples from the dataset"
+![alt input_samples](./writeup_images/input_samples.png=50x)
 
 ### Design and Test a Model Architecture
 
